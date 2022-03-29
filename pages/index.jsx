@@ -29,7 +29,7 @@ export default function Home() {
   }, [characters, page]);
 
   return (
-    <div className="h-screen w-screen">`Ω
+    <div className="h-screen w-screen">
       <div className="flex justify-center items-center mb-12 mt-4">
         <img
           className="w-56"
