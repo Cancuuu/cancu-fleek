@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
-import { Pagination } from "@mui/material";
+import { Pagination, CircularProgress } from "@mui/material";
 
 export default function Home() {
   const [characters, setCharacters] = useState([]);
@@ -40,9 +40,13 @@ export default function Home() {
       <main className="griddie">
         <div className="col-start-1 col-end-4"></div>
         <div className="col-start-4 col-end-12 grid gap-16 grid-cols-3">
-          {renderedCharacters.map((character) => {
-            return <CharacterCard character={character} key={character.id} />;
-          })}
+          {renderedCharacters ? (
+            renderedCharacters.map((character) => {
+              return <CharacterCard character={character} key={character.id} />;
+            })
+          ) : (
+            <CircularProgress />
+          )}
         </div>
         <div className="col-start-4 col-end-12 m-16 flex justify-center items-center">
           <Pagination
