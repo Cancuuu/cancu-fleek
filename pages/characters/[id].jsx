@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
-
+import Image from "next/image";
+import TopBar from "../../components/TopBar";
+import Layout from "../../components/Layout";
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://rickandmortyapi.com/api/character/");
@@ -31,20 +33,18 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const CharacterPage = ({character}) => {
-  
+const CharacterPage = ({ character }) => {
   return (
-    <div className="h-screen w-screen">
-      <div className="flex justify-center items-center mb-12 mt-4">
-        <img
-          className="w-56"
-          src="https://media.cdn.adultswim.com/uploads/20210428/21428161947-rick-and-morty-logo-png.png"
-          alt=""
-        />
-      </div>
+    <Layout>
       <main className="griddie">
         <div className="col-start-3 col-end-11 flex flex-col items-center">
-          <img className="w-64 rounded-2xl" src={character.image} alt="" />
+          <Image
+            width={256}
+            height={256}
+            className="w-64 rounded-2xl"
+            src={character.image}
+            alt=""
+          />
           <h1 className="text-lg mt-4">{character.name}</h1>
           <p className="text-sm">{character.species}</p>
           <p className="text-sm">{character.status}</p>
@@ -57,7 +57,7 @@ const CharacterPage = ({character}) => {
           </Link>
         </div>
       </main>
-    </div>
+    </Layout>
   );
 };
 

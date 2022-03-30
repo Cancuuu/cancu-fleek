@@ -20,5 +20,5 @@ a {
 }
 
 .griddie {
-  @apply grid grid-cols-12 gap-4;
+  @apply grid grid-cols-12;
 }
