@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
 import { Pagination, CircularProgress } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function Home() {
   const [characters, setCharacters] = useState([]);
@@ -38,7 +42,44 @@ export default function Home() {
         />
       </div>
       <main className="griddie">
-        <div className="col-start-1 col-end-4"></div>
+        <div className="col-start-1 col-end-4 flex flex-col items-center  border-r border-inherit mr-8">
+          <SearchIcon style={{ cursor: "pointer", padding: "17px" }} />
+          <Autocomplete
+            id="free-solo-dem"
+            freeSolo
+            sx={{ width: 300 }}
+            options={characters.map((character) => ({
+              label: character.name,
+              value: character.id,
+            }))}
+            renderInput={(params) => <TextField {...params} label="freeSolo" />}
+          />
+          <Autocomplete
+            className="mt-4"
+            disablePortal
+            id="combo-box-demo"
+            options={characters.map((character) => ({
+              label: character.name,
+              value: character.id,
+            }))}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Status" />}
+          />
+          <Autocomplete
+            className="mt-4"
+            disablePortal
+            id="combo-box-demo"
+            options={characters.map((character) => ({
+              label: character.name,
+              value: character.id,
+            }))}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Gender filter" />
+            )}
+          />
+        </div>
+
         <div className="col-start-4 col-end-12 grid gap-16 grid-cols-3">
           {renderedCharacters ? (
             renderedCharacters.map((character) => {
