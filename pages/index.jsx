@@ -1,9 +1,11 @@
-
 export default function Home() {
-  
+  const state = [];
+
   return (
     <div className="h-screen w-screen">
-      <h1>Hello world!</h1>
+      {state.map((note) => {
+        return <li key={note.id}>{note.content}</li>;
+      })}
     </div>
   );
 }

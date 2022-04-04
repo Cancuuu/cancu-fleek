@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import FilterSection from "../../components/FilterSection";
 import Pagination from "@mui/material/Pagination";
 import CharacterCard from "../../components/CharacterCard";
+import { useSelector } from "react-redux";
 
 export const getStaticProps = async () => {
   const res = await fetch("https://rickandmortyapi.com/api/character/");
@@ -17,19 +18,32 @@ export const getStaticProps = async () => {
 
 export default function Characters({ characters }) {
   const [renderedCharacters, setRenderedCharacters] = useState([]);
+  const [paginationNumber, setPaginationNumber] = useState(0);
   const [page, setPage] = useState(1);
   const MAX_QTY_CARDS = 6;
-  const paginationNumber = Math.ceil(characters.length / MAX_QTY_CARDS);
+  console.log(characters)
 
-  const handlePagination = () => {
+  const filters = useSelector((state) => state.filter);
+
+  console.log(filters);
+
+  const handlePagination = (_characters) => {
     const start = (page - 1) * MAX_QTY_CARDS;
     const end = page * MAX_QTY_CARDS;
-    setRenderedCharacters(characters.slice(start, end));
+    setRenderedCharacters(_characters.slice(start, end));
   };
 
   useEffect(() => {
-    handlePagination();
-  }, [characters, page]);
+    const filteredCharacters = characters.filter((character) => {
+      return (
+        character.name.toLowerCase().includes(filters.name) &&
+        character.status.toLowerCase().includes(filters.status) &&
+        character.gender.toLowerCase().includes(filters.gender)
+      );
+    });
+    handlePagination(filteredCharacters);
+    setPaginationNumber(Math.ceil(filteredCharacters.length / MAX_QTY_CARDS))
+  }, [characters, page, filters]);
 
   return (
     <Layout>
