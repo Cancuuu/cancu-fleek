@@ -4,6 +4,7 @@ import FilterSection from "../../components/FilterSection";
 import Pagination from "@mui/material/Pagination";
 import CharacterCard from "../../components/CharacterCard";
 import { useSelector } from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const getStaticProps = async () => {
   const res = await fetch("https://rickandmortyapi.com/api/character/");
