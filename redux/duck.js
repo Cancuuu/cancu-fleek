@@ -6,12 +6,14 @@ const initialData = {
     status: "",
     gender: "",
   },
+  menuButton: false,
 };
 
 const GET_CHARACTERS_SUCCESFUL = "GET_CHARACTERS_SUCCESFUL";
 const ADD_NAME = "ADD_NAME";
 const ADD_STATUS = "ADD_STATUS";
 const ADD_GENDER = "ADD_GENDER";
+const MENU_ACTIVE = "MENU_ACTIVE";
 
 //reducers
 
@@ -45,6 +47,11 @@ export default function filterReducer(state = initialData, action) {
           ...state.filter,
           gender: action.payload,
         },
+      };
+    case MENU_ACTIVE:
+      return {
+        ...state,
+        menuButton: action.payload,
       };
     default:
       return state;
@@ -80,3 +87,11 @@ export const addGender = (gender) => (dispatch, getState) => {
     payload: gender.toLowerCase(),
   });
 };
+
+export const activeMenu = (state) => (dispatch, getState) => {
+  dispatch({
+    type: MENU_ACTIVE,
+    payload: state
+  });
+};
+

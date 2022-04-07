@@ -5,6 +5,7 @@ import Pagination from "@mui/material/Pagination";
 import CharacterCard from "../../components/CharacterCard";
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
+import FilterComponent from "../../components/FilterComponent";
 
 export default function Characters() {
   const [characters, setCharacters] = useState([]);
@@ -14,6 +15,7 @@ export default function Characters() {
 
   // selectors
   const filters = useSelector((state) => state.filter);
+  const showMenu = useSelector((state) => state.menuButton);
 
   console.log(filters);
 
@@ -54,9 +56,14 @@ export default function Characters() {
 
   return (
     <Layout>
+      {showMenu ? (
+        <div className="z-[100] w-full h-full">
+          <FilterComponent characters={characters} />
+        </div>
+      ) : null}
       <main className="griddie">
         <FilterSection characters={characters} />
-        <div className="col-start-4 col-end-12 grid gap-12 grid-cols-4 auto-rows-auto p-4 overflow-auto">
+        <div className="lg:col-start-4 lg:col-end-13 col-start-1 col-end-13 grid gap-12 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 p-4">
           {characters ? (
             characters.map((character) => {
               return <CharacterCard character={character} key={character.id} />;
