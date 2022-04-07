@@ -2,10 +2,12 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
 import { activeMenu } from "../redux/duck";
 
-const TopBar = () => {
+const TopBar = ({ backIcon }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -14,15 +16,25 @@ const TopBar = () => {
   }, [menuOpen]);
 
   return (
-    <div className="lg:griddie grid">
-      <div className="col-start-1 col-end-2 lg:hidden">
-        {menuOpen ? (
-          <MenuOpenIcon onClick={() => setMenuOpen(false)} />
-        ) : (
-          <MenuIcon onClick={() => setMenuOpen(true)} />
-        )}
-      </div>
-      <div className="col-start-6 col-end-10">
+    <div className="grid grid-cols-8">
+      {backIcon ? (
+        <Button href="/characters">
+          <ArrowBackIcon />
+        </Button>
+      ) : (
+        <div className="col-start-1 col-end-2 lg:hidden">
+          {menuOpen ? (
+            <Button>
+              <MenuOpenIcon onClick={() => setMenuOpen(false)} />
+            </Button>
+          ) : (
+            <Button>
+              <MenuIcon onClick={() => setMenuOpen(true)} />
+            </Button>
+          )}
+        </div>
+      )}
+      <div className="lg:col-start-5 lg:col-start-6 col-start-3 col-end-7">
         <Image
           width={200}
           height={70}
