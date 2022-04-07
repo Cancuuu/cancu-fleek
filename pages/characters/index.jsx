@@ -56,11 +56,9 @@ export default function Characters() {
 
   return (
     <Layout>
-      {showMenu ? (
-        <div className="z-[100] w-full h-full">
-          <FilterComponent characters={characters} />
-        </div>
-      ) : null}
+      <div className={`z-[100] w-full h-full ${showMenu ? "" : "hidden"}`}>
+        <FilterComponent characters={characters} />
+      </div>
       <main className="griddie">
         <FilterSection characters={characters} />
         <div className="lg:col-start-4 lg:col-end-13 col-start-1 col-end-13 grid gap-12 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 p-4">
