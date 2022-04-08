@@ -26,6 +26,7 @@ export default function Characters() {
   let API_URL = `https://rickandmortyapi.com/api/character/?page=${page}`;
 
   const fetcher = async () => {
+    setPage(1);
     const res = await fetch(API_URL);
     const data = await res.json();
     console.log(data);
@@ -87,7 +88,7 @@ export default function Characters() {
         <FilterSection characters={characters} />
         <div className="lg:col-start-4 lg:col-end-13 col-start-1 col-end-13 grid gap-12 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 p-4">
           {characters ? (
-            characters.map((character) => {
+            characters?.map((character) => {
               return <CharacterCard character={character} key={character.id} />;
             })
           ) : (

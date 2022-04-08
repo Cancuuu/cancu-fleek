@@ -22,7 +22,7 @@ const FilterComponent = ({ characters }) => {
           dispatch(addName(e.target.value || ""));
         }}
         onChange={(e, value) => {
-          dispatch(addName(value.label || ""));
+          dispatch(addName(value?.label || ""));
         }}
       />
       <FormControl className="mt-8 w-full">
