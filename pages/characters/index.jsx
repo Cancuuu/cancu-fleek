@@ -8,7 +8,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import FilterComponent from "../../components/FilterComponent";
 import IconButton from "@mui/material/IconButton";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { Button } from "@mui/material";
 
 export default function Characters() {
   const [characters, setCharacters] = useState([]);

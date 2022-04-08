@@ -5,7 +5,7 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { activeMenu } from "../redux/duck";
+import { activeMenu } from "../redux/reduxDuck";
 
 const TopBar = ({ backIcon }) => {
   const [menuOpen, setMenuOpen] = useState(false);

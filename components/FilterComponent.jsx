@@ -3,7 +3,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addName, addStatus, addGender } from "../redux/duck";
+import { addName, addStatus, addGender } from "../redux/reduxDuck";
 
 const FilterComponent = ({ characters }) => {
   const dispatch = useDispatch();
@@ -12,20 +12,13 @@ const FilterComponent = ({ characters }) => {
       <div className="text-center mb-8">
         <h1 className="text-2xl">Filters</h1>
       </div>
-      <Autocomplete
-        id="free-solo-dem"
-        freeSolo
+      <TextField
         className="w-full"
-        options={characters.map((character) => ({
-          label: character.name,
-          value: character.id,
-        }))}
-        renderInput={(params) => <TextField {...params} label="Name" />}
-        onInputChange={(e) => {
-          dispatch(addName(e.target.value || ""));
-        }}
+        id="outlined-basic"
+        label="Name"
+        variant="outlined"
         onChange={(e, value) => {
-          dispatch(addName(value?.label || ""));
+          dispatch(addName(e.target.value || ""));
         }}
       />
       <FormControl className="mt-8 w-full">
