@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Pagination, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import CharacterCard from "./CharacterCard";
 
 const CharacterGrid = ({ renderedCharacters, paginationNumber }) => {
