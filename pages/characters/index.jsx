@@ -12,78 +12,83 @@ import { Button } from "@mui/material";
 
 export default function Characters() {
   const [characters, setCharacters] = useState([]);
-
+  //state for the pagination component
   const [paginationNumber, setPaginationNumber] = useState(0);
+  // state for the query param page
   const [page, setPage] = useState(1);
-  const scrollTopActive = true;
+
+  //ref for scrollTop
   const topRef = useRef();
-  // selectors
+
+  // get data from redux
   const filters = useSelector((state) => state.filter);
   const showMenu = useSelector((state) => state.menuButton);
 
-  console.log(filters);
-
   let API_URL = `https://rickandmortyapi.com/api/character/?page=${page}`;
 
+  // fetch data from API_URL with query params added and set state
   const fetcher = async () => {
-    setPage(1);
     const res = await fetch(API_URL);
     const data = await res.json();
-    console.log(data);
     setPaginationNumber(data.info.pages);
     setCharacters(data.results);
   };
 
   const checkFilters = () => {
+    // object destructuring for filters
     const { name, status, gender } = filters;
-    console.log(name);
-    console.log(status);
-    console.log(gender);
 
+    //if filters has info add to API_URL----
     if (name !== "") {
       API_URL += `&name=${name}`;
+      setPage(1);
     }
 
     if (status !== "") {
       API_URL += `&status=${status}`;
+      setPage(1);
     }
 
     if (gender !== "") {
       API_URL += `&gender=${gender}`;
+      setPage(1);
     }
+    //--------------------------------
 
     fetcher();
   };
 
+  // check if theres a filter applied to the search
+  // when the filters state or the page changes
   useEffect(() => {
     checkFilters();
   }, [filters, page]);
 
+  //scroll to top function
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
 
   return (
     <Layout>
-      {scrollTopActive && (
-        <IconButton
-          className="z-[1000] fixed right-2 bottom-2 mb-2 mr-2 rounded shadow-2xl"
-          aria-label="delete"
-          color="primary"
-          onClick={() => {
-            scrollToTop();
-          }}
-        >
-          <ArrowUpwardIcon />
-        </IconButton>
-      )}
-      <div
+      <IconButton
+        className="z-[1000] fixed right-2 bottom-2 mb-2 mr-2 rounded shadow-2xl"
+        aria-label="delete"
+        color="primary"
+        onClick={() => {
+          scrollToTop();
+        }}
+      >
+        <ArrowUpwardIcon />
+      </IconButton>
+
+      <aside
         className={`z-[100] w-full h-full transition-all ${
           showMenu ? "" : "hidden"
         }`}
       >
         <FilterComponent characters={characters} />
-      </div>
+      </aside>
       <main ref={topRef} className="griddie">
         <FilterSection characters={characters} />
         <div className="lg:col-start-4 lg:col-end-13 col-start-1 col-end-13 grid gap-12 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 p-4">

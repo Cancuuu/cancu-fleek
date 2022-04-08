@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import TopBar from "../../components/TopBar";
 import Layout from "../../components/Layout";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-
-import Box from "@mui/material/Box";
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://rickandmortyapi.com/api/character/");
@@ -45,7 +41,6 @@ const CharacterPage = ({ character }) => {
 
   useEffect(() => {
     const fiveEpisodes = character.episode.slice(0, 5);
-    console.log(fiveEpisodes);
     fiveEpisodes.map((episode) => {
       fetch(episode)
         .then((res) => res.json())
@@ -81,6 +76,9 @@ const CharacterPage = ({ character }) => {
             </p>
             <p>
               <b>Gender:</b> {character.gender}
+            </p>
+            <p>
+              <b>Origin:</b> {character.origin.name}
             </p>
             <p>
               <b>Character:</b> {character.origin.name}

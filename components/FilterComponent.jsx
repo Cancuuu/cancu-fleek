@@ -9,6 +9,9 @@ const FilterComponent = ({ characters }) => {
   const dispatch = useDispatch();
   return (
     <>
+      <div className="text-center mb-8">
+        <h1 className="text-2xl">Filters</h1>
+      </div>
       <Autocomplete
         id="free-solo-dem"
         freeSolo
