@@ -17,7 +17,7 @@ const FilterComponent = ({ characters }) => {
         id="outlined-basic"
         label="Name"
         variant="outlined"
-        onChange={(e, value) => {
+        onChange={(e) => {
           dispatch(addName(e.target.value || ""));
         }}
       />
@@ -30,11 +30,12 @@ const FilterComponent = ({ characters }) => {
             dispatch(addStatus(e.target.value || ""));
           }}
           label="Age"
+          defaultValue=""
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={"unknown"}>unknown</MenuItem>
+          <MenuItem value={"unknown"}>Unknown</MenuItem>
           <MenuItem value={"Alive"}>Alive</MenuItem>
           <MenuItem value={"Dead"}>Dead</MenuItem>
         </Select>
@@ -42,6 +43,7 @@ const FilterComponent = ({ characters }) => {
       <FormControl className="mt-8 w-full">
         <InputLabel id="demo-simple-select-label">Gender</InputLabel>
         <Select
+          defaultValue=""
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           onChange={(e, value) => {
@@ -52,7 +54,7 @@ const FilterComponent = ({ characters }) => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={"unknown"}>unknown</MenuItem>
+          <MenuItem value={"unknown"}>Unknown</MenuItem>
           <MenuItem value={"Male"}>Male</MenuItem>
           <MenuItem value={"Female"}>Female</MenuItem>
         </Select>

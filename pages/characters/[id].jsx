@@ -37,8 +37,6 @@ const CharacterPage = ({ character }) => {
   const [value, setValue] = useState(0);
   const [epCharacterData, setEpCharacterData] = useState([]);
 
-  console.log(epCharacterData);
-
   useEffect(() => {
     const fiveEpisodes = character.episode.slice(0, 5);
     fiveEpisodes.map((episode) => {
@@ -93,7 +91,6 @@ const CharacterPage = ({ character }) => {
           <Tabs
             value={value}
             onChange={(e, value) => setValue(value)}
-            centered
             variant="scrollable"
             className="w-full mb-8"
           >

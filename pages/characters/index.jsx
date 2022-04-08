@@ -102,7 +102,7 @@ export default function Characters() {
       </main>
       <div className="lg:col-start-6 lg:col-end-10 flex justify-center items-center my-8">
         <Pagination
-          onChange={(e) => setPage(e.target.textContent)}
+          onChange={(e, value) => setPage(value)}
           count={paginationNumber}
           color="primary"
         />
