@@ -105,6 +105,7 @@ export default function Characters() {
           onChange={(e, value) => setPage(value)}
           count={paginationNumber}
           color="primary"
+          className="mb-8"
         />
       </div>
     </Layout>
